@@ -13,7 +13,7 @@ public class Order {
     private int rentTime;
     private String deliveryDate;
     private String comment;
-    List<String> color;//= Arrays.asList("BLACK", "GREY", null);
+   private List<String> color;//= Arrays.asList("BLACK", "GREY", null);
    // List color = new ArrayList(Arrays.asList("BLACK", "GREY", null));
 
     public String getFirstName() {

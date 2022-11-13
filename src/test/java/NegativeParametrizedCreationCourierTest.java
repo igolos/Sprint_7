@@ -1,9 +1,11 @@
-import clients.Courier;
+import clients.pojo.Courier;
 import clients.CourierClient;
 import clients.Generator;
+import clients.pojo.Credentials;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +22,7 @@ public class NegativeParametrizedCreationCourierTest {
     private Courier courier;
     private int statusCode;
     private String message;
+    private int id;
 
     public NegativeParametrizedCreationCourierTest(Courier courier, int statusCode, String message) {
         this.courier = courier;
@@ -56,4 +59,10 @@ public class NegativeParametrizedCreationCourierTest {
         assertEquals(message,actualMessage);
 
     }
+//    @After
+//    public void cleanUp(){
+//        ValidatableResponse responseLogin = courierClient.login(Credentials.from(courier));
+//        id = responseLogin.extract().path("id");
+//        courierClient.delete(id);
+//    }
 }

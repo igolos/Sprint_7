@@ -1,9 +1,31 @@
 package clients;
 
+import clients.pojo.Courier;
+import clients.pojo.Credentials;
+import org.apache.commons.lang3.RandomStringUtils;
+
 public class Generator {
-    public static Courier getDefault(){
-        return new Courier("pos", "positive123", "Nas");
-    }
+//    public static Courier getDefault(){
+//        return new Courier("pos", "positive123", "Nas");
+//    }
+public static Courier getDefault() {
+
+
+    final String courierLogin = RandomStringUtils.randomAlphabetic(7);
+
+
+    final String courierPassword = RandomStringUtils.randomAlphabetic(7);
+
+
+    final String courierFirstName = RandomStringUtils.randomAlphabetic(7);
+
+
+    return new Courier(courierLogin, courierPassword, courierFirstName);
+
+
+}
+
+
     public static Courier getWithPasswordsOnly(){
         return new Courier(null, "positive123", null);
     }

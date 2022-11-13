@@ -1,6 +1,6 @@
-import clients.Courier;
+import clients.pojo.Courier;
 import clients.CourierClient;
-import clients.Credentials;
+import clients.pojo.Credentials;
 import clients.Generator;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;

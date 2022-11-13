@@ -1,6 +1,8 @@
 package clients;
 
 
+import clients.pojo.Courier;
+import clients.pojo.Credentials;
 import io.restassured.response.ValidatableResponse;
 
 

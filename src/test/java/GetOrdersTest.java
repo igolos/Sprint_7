@@ -10,6 +10,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertEquals;
 
 public class GetOrdersTest {
@@ -29,6 +30,8 @@ public class GetOrdersTest {
         int actualStatusCode = responseGetOrders.extract().statusCode();
         order = responseGetOrders.extract().path("orders");
         assertEquals("You can not get orders", 200, actualStatusCode);
+        MatcherAssert.assertThat(order.size(), notNullValue());
         MatcherAssert.assertThat(order, notNullValue());
+
     }
 }
