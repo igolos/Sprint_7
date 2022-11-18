@@ -6,6 +6,7 @@ import io.restassured.response.ValidatableResponse;
 import org.hamcrest.MatcherAssert;
 import org.junit.Before;
 import org.junit.Test;
+import org.hamcrest.Matchers;
 
 import java.util.ArrayList;
 
@@ -30,8 +31,6 @@ public class GetOrdersTest {
         int actualStatusCode = responseGetOrders.extract().statusCode();
         order = responseGetOrders.extract().path("orders");
         assertEquals("You can not get orders", 200, actualStatusCode);
-      //  MatcherAssert.assertThat(order.size(), notNullValue());
-//        MatcherAssert.assertThat(order.isEmpty());
         assertEquals(false, order.isEmpty());
 
     }
