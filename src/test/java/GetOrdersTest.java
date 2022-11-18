@@ -31,8 +31,6 @@ public class GetOrdersTest {
         int actualStatusCode = responseGetOrders.extract().statusCode();
         order = responseGetOrders.extract().path("orders");
         assertEquals("You can not get orders", 200, actualStatusCode);
-      //  MatcherAssert.assertThat(order.size(), notNullValue());
-//        MatcherAssert.assertThat(order.isEmpty());
         assertEquals(false, order.isEmpty());
 
     }
