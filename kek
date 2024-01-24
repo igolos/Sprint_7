@@ -1,2 +1,27 @@
+public class ExecuteCustomizedSqlScript {
+    public static void main(String[] args) {
+        String jdbcUrl = "jdbc:postgresql://tvldd-sacle0002.delta.sbrf.ru:6544/ift_sc_db_1?prepareThreshold=0";
+        String user = "dsc-appl";
+        String password = "Wimion$Quazi737A";
+        String scriptFilePath = "/path/to/your/sql/script.sql";
 
+        try (Connection connection = DriverManager.getConnection(jdbcUrl, user, password);
+             BufferedReader reader = new BufferedReader(new FileReader(scriptFilePath))) {
+
+            StringBuilder scriptContent = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Заменяем 'beneficiary_id' на ваше конкретное значение
+                line = line.replace("ben_id uuid := 'beneficiary_id';", "ben_id uuid := 'ваше_значение';");
+                scriptContent.append(line).append("\n");
+            }
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(scriptContent.toString())) {
+                preparedStatement.execute();
+            }
+        } catch (SQLException | java.io.IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
