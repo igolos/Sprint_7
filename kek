@@ -1,2 +1,27 @@
-
+public void Anketa() throws SQLException {
+        String script = "DO $$\n" +
+                "    DECLARE\n" +
+                "        ben_id uuid := ?;\n" +
+                "        balance_id uuid;\n" +
+                "    BEGIN\n" +
+                " \n" +
+                "        balance_id = (select b.beneficiary_balance_id from beneficiary b where id = ben_id);\n" +
+                " \n" +
+                "        delete from beneficiary_contact where beneficiary_id = ben_id;\n" +
+                "        delete from db_queue where beneficiary_id = ben_id::varchar;\n" +
+                "        delete from integration_journal where beneficiary_event_id in (select be.id from beneficiary_event be where beneficiary_id = ben_id);\n" +
+                "        delete from beneficiary_event where beneficiary_id = ben_id;\n" +
+                "        delete from transaction where beneficiary_id = ben_id;\n" +
+                "        delete from beneficiary where id = ben_id;\n" +
+                "        delete from beneficiary_balance where id = balance_id;\n" +
+                " \n" +
+                " \n" +
+                "    END $$;";
+        String jdbcUrl = "jdbc:postgresql://tvldd-sacle0000.delta.sbrf.ru:6564/ift_sc_db_2?prepareThreshold=0";
+        try (Connection connection = DriverManager.getConnection(jdbcUrl, "1", "2");
+             PreparedStatement statement = connection.prepareStatement(script);) {
+            statement.setObject(1, UUID.fromString("6113671c-aa4c-4938-ae1c-29e174c02042"));
+            statement.execute();
+        }
+    }
 
